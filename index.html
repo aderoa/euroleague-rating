@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Euroleague Global Rating</title>
+<style>
+:root{color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;padding:0;background:#fff;
+  font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,
+  sans-serif;color:#1a1a2e}
+.wrap{max-width:640px;margin:0 auto;padding:2px}
+h2{margin:0 0 8px;font-size:17px;letter-spacing:-.2px}
+section{display:block;margin:0 0 26px}
+section > h3{margin:0 0 8px;font-size:15px;letter-spacing:-.1px;color:#1a1a2e;
+  font-weight:700;padding-bottom:4px;border-bottom:2px solid #ecedf3}
+section h4{margin:16px 0 5px;font-size:12px;color:#5a5a72;font-weight:700;
+  text-transform:uppercase;letter-spacing:.4px}
+/* EVERY TABLE THE SAME SHAPE.
+   With auto layout each table sizes itself to its own contents, so the Rookies
+   table put Player in a different place from the Top 30 and the eye had to find
+   the columns again at every heading. Fixed layout plus one set of widths makes
+   them all agree -- the name column is wide enough for the longest in the league,
+   and the numbers line up straight down the page. */
+table{border-collapse:collapse;width:100%;table-layout:fixed}
+/* Wide enough for three digits. A team table carries LEAGUE positions, so it
+   reaches 226 -- and at 30px those truncated to "1..." and "2...", which is worse
+   than no number at all. */
+col.c-rk{width:38px}
+col.c-fl{width:26px}
+col.c-pl{width:auto}
+/* Wide enough for a club name in full: "Maccabi Tel Aviv" needs it, and the
+   player column gives up the room, being the one set to auto. */
+col.c-tm{width:150px}
+col.c-rat{width:60px}
+col.c-gp{width:42px}
+col.c-num{width:52px}
+th,td{padding:5px 6px;border-bottom:1px solid #ecedf3;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+/* THE NAME WRAPS RATHER THAN TRUNCATES.
+   Everything else in the row is short and fixed, so the name is the only column
+   that can run out of room -- and on a phone it did, leaving "A'ja W..." and
+   "Jonqu...". A name is the one thing a reader cannot reconstruct from a
+   fragment, so it takes a second line instead of losing its end. */
+td.pl{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.25}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:#6a6a80;
+  text-align:right;border-bottom:1px solid #d8d9e3}
+th.l,td.l{text-align:left}
+td{text-align:right;font-variant-numeric:tabular-nums}
+/* Never clipped: a rank that reads "1..." could be 1, 14 or 226. */
+td.rk{color:#9a9ab0;font-size:12px;overflow:visible;text-overflow:clip}
+td.fl{width:1%;padding-right:0}
+td.fl img{display:block;width:19px;height:auto;border-radius:2px}
+td.pl{font-weight:600}
+td.tm{color:#5a5a72;font-size:12px;letter-spacing:.3px}
+td.rat{font-weight:700;color:#8a5a00}
+tr:nth-child(even) td{background:#fafafd}
+th[data-s]{cursor:pointer}
+th[data-s]:hover{color:#1a1a2e}
+th[aria-sort]{color:#8a5a00}
+th[aria-sort="descending"]::after{content:" ↓"}
+th[aria-sort="ascending"]::after{content:" ↑"}
+.none{color:#8a8aa0;font-size:12px;margin:4px 0 0}
+/* On a phone the numbers give up their padding first, so the name keeps as much
+   width as possible before it has to wrap at all. */
+@media(max-width:560px){
+  th,td{padding:5px 2px;font-size:13px}
+  col.c-rk{width:32px}
+  col.c-fl{width:22px}
+  col.c-tm{width:118px}
+  col.c-rat{width:48px}
+  col.c-gp{width:28px}
+  col.c-num{width:38px}
+  th{font-size:10px;letter-spacing:.2px}
+}
+@media(max-width:380px){
+  col.c-gp{width:24px}
+  col.c-num{width:34px}
+  th,td{font-size:12px}
+}
+</style></head><body><div class="wrap">
+<h2>Euroleague &mdash; Global Rating</h2>
+<section id="all"><h3>Top 30</h3><table><colgroup><col class="c-rk"><col class="c-fl"><col class="c-pl"><col class="c-tm"><col class="c-rat"><col class="c-gp"><col class="c-num"><col class="c-num"><col class="c-num"></colgroup><thead><tr>
+<th></th><th></th>
+<th class="l" data-s="t">Player</th><th class="l" data-s="t"></th>
+<th data-s="n">Rat</th><th data-s="n">GP</th><th data-s="n">Pts</th>
+<th data-s="n">Reb</th><th data-s="n">Ast</th>
+</tr></thead><tbody><tr><td class="rk">1</td><td class="fl"><img src="https://flagcdn.com/w40/ss.png" alt="" loading="lazy"></td><td class="l pl">Carlik Jones</td><td class="l tm">KK Partizan</td><td class="rat">40.80</td><td>1</td><td>20.0</td><td>4.0</td><td>10.0</td></tr>
+<tr><td class="rk">2</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Dwayne Bacon</td><td class="l tm">Dubai</td><td class="rat">36.70</td><td>1</td><td>24.0</td><td>5.0</td><td>4.0</td></tr>
+<tr><td class="rk">3</td><td class="fl"><img src="https://flagcdn.com/w40/gr.png" alt="" loading="lazy"></td><td class="l pl">Tyler Dorsey</td><td class="l tm">Olympiacos</td><td class="rat">34.77</td><td>1</td><td>25.0</td><td>2.0</td><td>1.0</td></tr>
+<tr><td class="rk">4</td><td class="fl"><img src="https://flagcdn.com/w40/bg.png" alt="" loading="lazy"></td><td class="l pl">Sasha Vezenkov</td><td class="l tm">Olympiacos</td><td class="rat">30.20</td><td>1</td><td>22.0</td><td>5.0</td><td>1.0</td></tr>
+<tr><td class="rk">5</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Jae Crowder</td><td class="l tm">ASVEL Basket</td><td class="rat">28.09</td><td>1</td><td>19.0</td><td>4.0</td><td>4.0</td></tr>
+<tr><td class="rk">6</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Kevin Punter</td><td class="l tm">Barca</td><td class="rat">26.16</td><td>1</td><td>19.0</td><td>1.0</td><td>1.0</td></tr>
+<tr><td class="rk">7</td><td class="fl"><img src="https://flagcdn.com/w40/mk.png" alt="" loading="lazy"></td><td class="l pl">TJ Shorts</td><td class="l tm">Valencia Basket</td><td class="rat">24.79</td><td>1</td><td>26.0</td><td>1.0</td><td>2.0</td></tr>
+<tr><td class="rk">8</td><td class="fl"><img src="https://flagcdn.com/w40/fr.png" alt="" loading="lazy"></td><td class="l pl">Mathias Lessort</td><td class="l tm">Panathinaikos</td><td class="rat">24.32</td><td>1</td><td>15.0</td><td>9.0</td><td>2.0</td></tr>
+<tr><td class="rk">9</td><td class="fl"><img src="https://flagcdn.com/w40/de.png" alt="" loading="lazy"></td><td class="l pl">Andreas Obst</td><td class="l tm">Bayern Munich</td><td class="rat">24.18</td><td>1</td><td>19.0</td><td>2.0</td><td>2.0</td></tr>
+<tr><td class="rk">10</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Daniel Oturu</td><td class="l tm">Hapoel Tel Aviv</td><td class="rat">23.47</td><td>1</td><td>20.0</td><td>12.0</td><td>3.0</td></tr>
+<tr><td class="rk">11</td><td class="fl"><img src="https://flagcdn.com/w40/es.png" alt="" loading="lazy"></td><td class="l pl">Darío Brizuela</td><td class="l tm">Barca</td><td class="rat">23.10</td><td>1</td><td>20.0</td><td>2.0</td><td>0.0</td></tr>
+<tr><td class="rk">12</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Braxton Key</td><td class="l tm">Fenerbahce Beko</td><td class="rat">22.53</td><td>1</td><td>11.0</td><td>10.0</td><td>3.0</td></tr>
+<tr><td class="rk">13</td><td class="fl"><img src="https://flagcdn.com/w40/lt.png" alt="" loading="lazy"></td><td class="l pl">Jonas Valanciunas</td><td class="l tm">Zalgiris</td><td class="rat">21.24</td><td>1</td><td>13.0</td><td>8.0</td><td>2.0</td></tr>
+<tr><td class="rk">14</td><td class="fl"><img src="https://flagcdn.com/w40/de.png" alt="" loading="lazy"></td><td class="l pl">Johannes Voigtmann</td><td class="l tm">Bayern Munich</td><td class="rat">20.12</td><td>1</td><td>10.0</td><td>5.0</td><td>3.0</td></tr>
+<tr><td class="rk">15</td><td class="fl"><img src="https://flagcdn.com/w40/am.png" alt="" loading="lazy"></td><td class="l pl">Chris Jones</td><td class="l tm">KK Crvena Zvezda</td><td class="rat">19.85</td><td>1</td><td>15.0</td><td>2.0</td><td>8.0</td></tr>
+<tr><td class="rk">16</td><td class="fl"><img src="https://flagcdn.com/w40/fr.png" alt="" loading="lazy"></td><td class="l pl">Sylvain Francisco</td><td class="l tm">Panathinaikos</td><td class="rat">19.36</td><td>1</td><td>18.0</td><td>2.0</td><td>4.0</td></tr>
+<tr><td class="rk">17</td><td class="fl"><img src="https://flagcdn.com/w40/de.png" alt="" loading="lazy"></td><td class="l pl">Johannes Thiemann</td><td class="l tm">Bayern Munich</td><td class="rat">19.15</td><td>1</td><td>15.0</td><td>7.0</td><td>1.0</td></tr>
+<tr><td class="rk">18</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Umoja Gibson</td><td class="l tm">Barca</td><td class="rat">18.69</td><td>1</td><td>10.0</td><td>6.0</td><td>2.0</td></tr>
+<tr><td class="rk">19</td><td class="fl"><img src="https://flagcdn.com/w40/do.png" alt="" loading="lazy"></td><td class="l pl">Jean Montero</td><td class="l tm">Olympiacos</td><td class="rat">18.61</td><td>1</td><td>15.0</td><td>5.0</td><td>5.0</td></tr>
+<tr><td class="rk">20</td><td class="fl"><img src="https://flagcdn.com/w40/lt.png" alt="" loading="lazy"></td><td class="l pl">Azuolas Tubelis</td><td class="l tm">Zalgiris</td><td class="rat">18.61</td><td>1</td><td>10.0</td><td>12.0</td><td>4.0</td></tr>
+<tr><td class="rk">21</td><td class="fl"><img src="https://flagcdn.com/w40/fr.png" alt="" loading="lazy"></td><td class="l pl">Marc-Owen Fodzo Dada</td><td class="l tm">ASVEL Basket</td><td class="rat">18.47</td><td>1</td><td>14.0</td><td>1.0</td><td>5.0</td></tr>
+<tr><td class="rk">22</td><td class="fl"><img src="https://flagcdn.com/w40/au.png" alt="" loading="lazy"></td><td class="l pl">Patty Mills</td><td class="l tm">ASVEL Basket</td><td class="rat">17.99</td><td>1</td><td>15.0</td><td>1.0</td><td>3.0</td></tr>
+<tr><td class="rk">23</td><td class="fl"><img src="https://flagcdn.com/w40/es.png" alt="" loading="lazy"></td><td class="l pl">Nikola Mirotic</td><td class="l tm">Valencia Basket</td><td class="rat">17.93</td><td>1</td><td>13.0</td><td>3.0</td><td>0.0</td></tr>
+<tr><td class="rk">24</td><td class="fl"><img src="https://flagcdn.com/w40/dk.png" alt="" loading="lazy"></td><td class="l pl">Shavon Shields</td><td class="l tm">Fenerbahce Beko</td><td class="rat">17.14</td><td>1</td><td>12.0</td><td>2.0</td><td>3.0</td></tr>
+<tr><td class="rk">25</td><td class="fl"><img src="https://flagcdn.com/w40/gr.png" alt="" loading="lazy"></td><td class="l pl">Kostas Mitoglou</td><td class="l tm">Panathinaikos</td><td class="rat">16.96</td><td>1</td><td>11.0</td><td>6.0</td><td>0.0</td></tr>
+<tr><td class="rk">26</td><td class="fl"><img src="https://flagcdn.com/w40/fr.png" alt="" loading="lazy"></td><td class="l pl">Guerschon Yabusele</td><td class="l tm">Panathinaikos</td><td class="rat">16.80</td><td>1</td><td>13.0</td><td>5.0</td><td>0.0</td></tr>
+<tr><td class="rk">27</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Lamar Stevens</td><td class="l tm">KK Partizan</td><td class="rat">16.64</td><td>1</td><td>11.0</td><td>5.0</td><td>0.0</td></tr>
+<tr><td class="rk">28</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Nigel Williams-Goss</td><td class="l tm">Zalgiris</td><td class="rat">16.59</td><td>1</td><td>14.0</td><td>2.0</td><td>6.0</td></tr>
+<tr><td class="rk">29</td><td class="fl"><img src="https://flagcdn.com/w40/hr.png" alt="" loading="lazy"></td><td class="l pl">Dario Saric</td><td class="l tm">Anadolu Efes</td><td class="rat">16.53</td><td>1</td><td>17.0</td><td>5.0</td><td>2.0</td></tr>
+<tr><td class="rk">30</td><td class="fl"><img src="https://flagcdn.com/w40/cf.png" alt="" loading="lazy"></td><td class="l pl">Kevarrius Hayes</td><td class="l tm">KK Partizan</td><td class="rat">16.46</td><td>1</td><td>10.0</td><td>3.0</td><td>1.0</td></tr></tbody></table></section>
+<section id="young"><h3>Under 25</h3><table><colgroup><col class="c-rk"><col class="c-fl"><col class="c-pl"><col class="c-tm"><col class="c-rat"><col class="c-gp"><col class="c-num"><col class="c-num"><col class="c-num"></colgroup><thead><tr>
+<th></th><th></th>
+<th class="l" data-s="t">Player</th><th class="l" data-s="t"></th>
+<th data-s="n">Rat</th><th data-s="n">GP</th><th data-s="n">Pts</th>
+<th data-s="n">Reb</th><th data-s="n">Ast</th>
+</tr></thead><tbody><tr><td class="rk">1</td><td class="fl"><img src="https://flagcdn.com/w40/do.png" alt="" loading="lazy"></td><td class="l pl">Jean Montero</td><td class="l tm">Olympiacos</td><td class="rat">18.61</td><td>1</td><td>15.0</td><td>5.0</td><td>5.0</td></tr>
+<tr><td class="rk">2</td><td class="fl"><img src="https://flagcdn.com/w40/lt.png" alt="" loading="lazy"></td><td class="l pl">Azuolas Tubelis</td><td class="l tm">Zalgiris</td><td class="rat">18.61</td><td>1</td><td>10.0</td><td>12.0</td><td>4.0</td></tr>
+<tr><td class="rk">3</td><td class="fl"><img src="https://flagcdn.com/w40/fr.png" alt="" loading="lazy"></td><td class="l pl">Marc-Owen Fodzo Dada</td><td class="l tm">ASVEL Basket</td><td class="rat">18.47</td><td>1</td><td>14.0</td><td>1.0</td><td>5.0</td></tr>
+<tr><td class="rk">4</td><td class="fl"><img src="https://flagcdn.com/w40/gr.png" alt="" loading="lazy"></td><td class="l pl">Lefteris Mantzoukas</td><td class="l tm">Panathinaikos</td><td class="rat">13.76</td><td>1</td><td>10.0</td><td>4.0</td><td>1.0</td></tr>
+<tr><td class="rk">5</td><td class="fl"><img src="https://flagcdn.com/w40/fr.png" alt="" loading="lazy"></td><td class="l pl">Matthew Strazel</td><td class="l tm">Anadolu Efes</td><td class="rat">8.92</td><td>1</td><td>12.0</td><td>2.0</td><td>3.0</td></tr>
+<tr><td class="rk">6</td><td class="fl"><img src="https://flagcdn.com/w40/es.png" alt="" loading="lazy"></td><td class="l pl">Mario Saint-Supery</td><td class="l tm">Valencia Basket</td><td class="rat">8.73</td><td>1</td><td>7.0</td><td>1.0</td><td>3.0</td></tr>
+<tr><td class="rk">7</td><td class="fl"><img src="https://flagcdn.com/w40/ml.png" alt="" loading="lazy"></td><td class="l pl">Aliou Diarra</td><td class="l tm">Virtus Bologna</td><td class="rat">7.21</td><td>1</td><td>8.0</td><td>1.0</td><td>1.0</td></tr>
+<tr><td class="rk">8</td><td class="fl"><img src="https://flagcdn.com/w40/dk.png" alt="" loading="lazy"></td><td class="l pl">Tobias Jensen</td><td class="l tm">Bayern Munich</td><td class="rat">6.98</td><td>1</td><td>5.0</td><td>1.0</td><td>1.0</td></tr>
+<tr><td class="rk">9</td><td class="fl"><img src="https://flagcdn.com/w40/it.png" alt="" loading="lazy"></td><td class="l pl">Matteo Spagnolo</td><td class="l tm">Baskonia</td><td class="rat">4.20</td><td>1</td><td>5.0</td><td>3.0</td><td>3.0</td></tr>
+<tr><td class="rk">10</td><td class="fl"><img src="https://flagcdn.com/w40/se.png" alt="" loading="lazy"></td><td class="l pl">Bobi Klintman</td><td class="l tm">Virtus Bologna</td><td class="rat">2.82</td><td>1</td><td>4.0</td><td>4.0</td><td>2.0</td></tr>
+<tr><td class="rk">11</td><td class="fl"><img src="https://flagcdn.com/w40/fr.png" alt="" loading="lazy"></td><td class="l pl">Nadir Hifi</td><td class="l tm">Paris Basketball</td><td class="rat">2.56</td><td>1</td><td>11.0</td><td>2.0</td><td>2.0</td></tr>
+<tr><td class="rk">12</td><td class="fl"><img src="https://flagcdn.com/w40/it.png" alt="" loading="lazy"></td><td class="l pl">Francesco Ferrari</td><td class="l tm">Virtus Bologna</td><td class="rat">2.51</td><td>1</td><td>2.0</td><td>1.0</td><td>0.0</td></tr>
+<tr><td class="rk">13</td><td class="fl"><img src="https://flagcdn.com/w40/it.png" alt="" loading="lazy"></td><td class="l pl">Gabriele Procida</td><td class="l tm">Real Madrid</td><td class="rat">0.33</td><td>1</td><td>0.0</td><td>1.0</td><td>0.0</td></tr>
+<tr><td class="rk">14</td><td class="fl"><img src="https://flagcdn.com/w40/fr.png" alt="" loading="lazy"></td><td class="l pl">Clement Frisch</td><td class="l tm">Baskonia</td><td class="rat">0.00</td><td>1</td><td>0.0</td><td>0.0</td><td>0.0</td></tr>
+<tr><td class="rk">15</td><td class="fl"><img src="https://flagcdn.com/w40/es.png" alt="" loading="lazy"></td><td class="l pl">Álvaro Cárdenas</td><td class="l tm">Valencia Basket</td><td class="rat">-0.00</td><td>1</td><td>0.0</td><td>0.0</td><td>3.0</td></tr></tbody></table></section>
+<section id="draft"><h3>Draft Eligible</h3><table><colgroup><col class="c-rk"><col class="c-fl"><col class="c-pl"><col class="c-tm"><col class="c-rat"><col class="c-gp"><col class="c-num"><col class="c-num"><col class="c-num"></colgroup><thead><tr>
+<th></th><th></th>
+<th class="l" data-s="t">Player</th><th class="l" data-s="t"></th>
+<th data-s="n">Rat</th><th data-s="n">GP</th><th data-s="n">Pts</th>
+<th data-s="n">Reb</th><th data-s="n">Ast</th>
+</tr></thead><tbody><tr><td class="rk">1</td><td class="fl"><img src="https://flagcdn.com/w40/fr.png" alt="" loading="lazy"></td><td class="l pl">Marc-Owen Fodzo Dada</td><td class="l tm">ASVEL Basket</td><td class="rat">18.47</td><td>1</td><td>14.0</td><td>1.0</td><td>5.0</td></tr>
+<tr><td class="rk">2</td><td class="fl"><img src="https://flagcdn.com/w40/es.png" alt="" loading="lazy"></td><td class="l pl">Mario Saint-Supery</td><td class="l tm">Valencia Basket</td><td class="rat">8.73</td><td>1</td><td>7.0</td><td>1.0</td><td>3.0</td></tr>
+<tr><td class="rk">3</td><td class="fl"><img src="https://flagcdn.com/w40/it.png" alt="" loading="lazy"></td><td class="l pl">Francesco Ferrari</td><td class="l tm">Virtus Bologna</td><td class="rat">2.51</td><td>1</td><td>2.0</td><td>1.0</td><td>0.0</td></tr>
+<tr><td class="rk">4</td><td class="fl"><img src="https://flagcdn.com/w40/sn.png" alt="" loading="lazy"></td><td class="l pl">Mouhamed Faye</td><td class="l tm">Paris Basketball</td><td class="rat">-0.31</td><td>1</td><td>0.0</td><td>2.0</td><td>1.0</td></tr>
+<tr><td class="rk">5</td><td class="fl"><img src="https://flagcdn.com/w40/si.png" alt="" loading="lazy"></td><td class="l pl">Stefan Joksimovic</td><td class="l tm">Baskonia</td><td class="rat">-1.27</td><td>1</td><td>0.0</td><td>0.0</td><td>3.0</td></tr></tbody></table></section>
+<section id="pg"><h3>Point Guards</h3><table><colgroup><col class="c-rk"><col class="c-fl"><col class="c-pl"><col class="c-tm"><col class="c-rat"><col class="c-gp"><col class="c-num"><col class="c-num"><col class="c-num"></colgroup><thead><tr>
+<th></th><th></th>
+<th class="l" data-s="t">Player</th><th class="l" data-s="t"></th>
+<th data-s="n">Rat</th><th data-s="n">GP</th><th data-s="n">Pts</th>
+<th data-s="n">Reb</th><th data-s="n">Ast</th>
+</tr></thead><tbody><tr><td class="rk">1</td><td class="fl"><img src="https://flagcdn.com/w40/ss.png" alt="" loading="lazy"></td><td class="l pl">Carlik Jones</td><td class="l tm">KK Partizan</td><td class="rat">40.80</td><td>1</td><td>20.0</td><td>4.0</td><td>10.0</td></tr>
+<tr><td class="rk">2</td><td class="fl"><img src="https://flagcdn.com/w40/mk.png" alt="" loading="lazy"></td><td class="l pl">TJ Shorts</td><td class="l tm">Valencia Basket</td><td class="rat">24.79</td><td>1</td><td>26.0</td><td>1.0</td><td>2.0</td></tr>
+<tr><td class="rk">3</td><td class="fl"><img src="https://flagcdn.com/w40/am.png" alt="" loading="lazy"></td><td class="l pl">Chris Jones</td><td class="l tm">KK Crvena Zvezda</td><td class="rat">19.85</td><td>1</td><td>15.0</td><td>2.0</td><td>8.0</td></tr>
+<tr><td class="rk">4</td><td class="fl"><img src="https://flagcdn.com/w40/fr.png" alt="" loading="lazy"></td><td class="l pl">Sylvain Francisco</td><td class="l tm">Panathinaikos</td><td class="rat">19.36</td><td>1</td><td>18.0</td><td>2.0</td><td>4.0</td></tr>
+<tr><td class="rk">5</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Umoja Gibson</td><td class="l tm">Barca</td><td class="rat">18.69</td><td>1</td><td>10.0</td><td>6.0</td><td>2.0</td></tr>
+<tr><td class="rk">6</td><td class="fl"><img src="https://flagcdn.com/w40/do.png" alt="" loading="lazy"></td><td class="l pl">Jean Montero</td><td class="l tm">Olympiacos</td><td class="rat">18.61</td><td>1</td><td>15.0</td><td>5.0</td><td>5.0</td></tr>
+<tr><td class="rk">7</td><td class="fl"><img src="https://flagcdn.com/w40/fr.png" alt="" loading="lazy"></td><td class="l pl">Marc-Owen Fodzo Dada</td><td class="l tm">ASVEL Basket</td><td class="rat">18.47</td><td>1</td><td>14.0</td><td>1.0</td><td>5.0</td></tr>
+<tr><td class="rk">8</td><td class="fl"><img src="https://flagcdn.com/w40/au.png" alt="" loading="lazy"></td><td class="l pl">Patty Mills</td><td class="l tm">ASVEL Basket</td><td class="rat">17.99</td><td>1</td><td>15.0</td><td>1.0</td><td>3.0</td></tr>
+<tr><td class="rk">9</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Nigel Williams-Goss</td><td class="l tm">Zalgiris</td><td class="rat">16.59</td><td>1</td><td>14.0</td><td>2.0</td><td>6.0</td></tr>
+<tr><td class="rk">10</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Mike James</td><td class="l tm">Anadolu Efes</td><td class="rat">16.09</td><td>1</td><td>22.0</td><td>4.0</td><td>5.0</td></tr>
+<tr><td class="rk">11</td><td class="fl"><img src="https://flagcdn.com/w40/ar.png" alt="" loading="lazy"></td><td class="l pl">Luca Vildoza</td><td class="l tm">KK Partizan</td><td class="rat">13.13</td><td>1</td><td>7.0</td><td>1.0</td><td>3.0</td></tr>
+<tr><td class="rk">12</td><td class="fl"><img src="https://flagcdn.com/w40/fr.png" alt="" loading="lazy"></td><td class="l pl">Elie Okobo</td><td class="l tm">Dubai</td><td class="rat">13.04</td><td>1</td><td>8.0</td><td>4.0</td><td>4.0</td></tr>
+<tr><td class="rk">13</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">McKinley Wright</td><td class="l tm">Dubai</td><td class="rat">12.69</td><td>1</td><td>12.0</td><td>5.0</td><td>3.0</td></tr>
+<tr><td class="rk">14</td><td class="fl"><img src="https://flagcdn.com/w40/it.png" alt="" loading="lazy"></td><td class="l pl">Alessandro Pajola</td><td class="l tm">KK Partizan</td><td class="rat">12.61</td><td>1</td><td>7.0</td><td>4.0</td><td>3.0</td></tr>
+<tr><td class="rk">15</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Tyson Etienne</td><td class="l tm">Paris Basketball</td><td class="rat">11.06</td><td>1</td><td>17.0</td><td>1.0</td><td>2.0</td></tr></tbody></table></section>
+<section id="sg"><h3>Shooting Guards</h3><table><colgroup><col class="c-rk"><col class="c-fl"><col class="c-pl"><col class="c-tm"><col class="c-rat"><col class="c-gp"><col class="c-num"><col class="c-num"><col class="c-num"></colgroup><thead><tr>
+<th></th><th></th>
+<th class="l" data-s="t">Player</th><th class="l" data-s="t"></th>
+<th data-s="n">Rat</th><th data-s="n">GP</th><th data-s="n">Pts</th>
+<th data-s="n">Reb</th><th data-s="n">Ast</th>
+</tr></thead><tbody><tr><td class="rk">1</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Dwayne Bacon</td><td class="l tm">Dubai</td><td class="rat">36.70</td><td>1</td><td>24.0</td><td>5.0</td><td>4.0</td></tr>
+<tr><td class="rk">2</td><td class="fl"><img src="https://flagcdn.com/w40/gr.png" alt="" loading="lazy"></td><td class="l pl">Tyler Dorsey</td><td class="l tm">Olympiacos</td><td class="rat">34.77</td><td>1</td><td>25.0</td><td>2.0</td><td>1.0</td></tr>
+<tr><td class="rk">3</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Kevin Punter</td><td class="l tm">Barca</td><td class="rat">26.16</td><td>1</td><td>19.0</td><td>1.0</td><td>1.0</td></tr>
+<tr><td class="rk">4</td><td class="fl"><img src="https://flagcdn.com/w40/de.png" alt="" loading="lazy"></td><td class="l pl">Andreas Obst</td><td class="l tm">Bayern Munich</td><td class="rat">24.18</td><td>1</td><td>19.0</td><td>2.0</td><td>2.0</td></tr>
+<tr><td class="rk">5</td><td class="fl"><img src="https://flagcdn.com/w40/es.png" alt="" loading="lazy"></td><td class="l pl">Darío Brizuela</td><td class="l tm">Barca</td><td class="rat">23.10</td><td>1</td><td>20.0</td><td>2.0</td><td>0.0</td></tr>
+<tr><td class="rk">6</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Braxton Key</td><td class="l tm">Fenerbahce Beko</td><td class="rat">22.53</td><td>1</td><td>11.0</td><td>10.0</td><td>3.0</td></tr>
+<tr><td class="rk">7</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Kameron Taylor</td><td class="l tm">Valencia Basket</td><td class="rat">16.06</td><td>1</td><td>12.0</td><td>7.0</td><td>2.0</td></tr>
+<tr><td class="rk">8</td><td class="fl"><img src="https://flagcdn.com/w40/fr.png" alt="" loading="lazy"></td><td class="l pl">Yves Pons</td><td class="l tm">ASVEL Basket</td><td class="rat">14.84</td><td>1</td><td>9.0</td><td>2.0</td><td>0.0</td></tr>
+<tr><td class="rk">9</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Tyson Ward</td><td class="l tm">Olympiacos</td><td class="rat">14.18</td><td>1</td><td>11.0</td><td>3.0</td><td>2.0</td></tr>
+<tr><td class="rk">10</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Justinian Jessup</td><td class="l tm">Bayern Munich</td><td class="rat">14.12</td><td>1</td><td>11.0</td><td>0.0</td><td>0.0</td></tr>
+<tr><td class="rk">11</td><td class="fl"><img src="https://flagcdn.com/w40/ca.png" alt="" loading="lazy"></td><td class="l pl">AJ Lawson</td><td class="l tm">Baskonia</td><td class="rat">13.37</td><td>1</td><td>20.0</td><td>4.0</td><td>2.0</td></tr>
+<tr><td class="rk">12</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Wade Baldwin</td><td class="l tm">Fenerbahce Beko</td><td class="rat">12.08</td><td>1</td><td>12.0</td><td>4.0</td><td>6.0</td></tr>
+<tr><td class="rk">13</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Devon Hall</td><td class="l tm">AX Armani Exchange Milan</td><td class="rat">11.54</td><td>1</td><td>13.0</td><td>5.0</td><td>3.0</td></tr>
+<tr><td class="rk">14</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Jaylen Nowell</td><td class="l tm">Besiktas Icrypex</td><td class="rat">9.98</td><td>1</td><td>17.0</td><td>4.0</td><td>2.0</td></tr>
+<tr><td class="rk">15</td><td class="fl"><img src="https://flagcdn.com/w40/fr.png" alt="" loading="lazy"></td><td class="l pl">Evan Fournier</td><td class="l tm">Olympiacos</td><td class="rat">9.15</td><td>1</td><td>7.0</td><td>1.0</td><td>3.0</td></tr></tbody></table></section>
+<section id="sf"><h3>Small Forwards</h3><table><colgroup><col class="c-rk"><col class="c-fl"><col class="c-pl"><col class="c-tm"><col class="c-rat"><col class="c-gp"><col class="c-num"><col class="c-num"><col class="c-num"></colgroup><thead><tr>
+<th></th><th></th>
+<th class="l" data-s="t">Player</th><th class="l" data-s="t"></th>
+<th data-s="n">Rat</th><th data-s="n">GP</th><th data-s="n">Pts</th>
+<th data-s="n">Reb</th><th data-s="n">Ast</th>
+</tr></thead><tbody><tr><td class="rk">1</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Jae Crowder</td><td class="l tm">ASVEL Basket</td><td class="rat">28.09</td><td>1</td><td>19.0</td><td>4.0</td><td>4.0</td></tr>
+<tr><td class="rk">2</td><td class="fl"><img src="https://flagcdn.com/w40/dk.png" alt="" loading="lazy"></td><td class="l pl">Shavon Shields</td><td class="l tm">Fenerbahce Beko</td><td class="rat">17.14</td><td>1</td><td>12.0</td><td>2.0</td><td>3.0</td></tr>
+<tr><td class="rk">3</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Lamar Stevens</td><td class="l tm">KK Partizan</td><td class="rat">16.64</td><td>1</td><td>11.0</td><td>5.0</td><td>0.0</td></tr>
+<tr><td class="rk">4</td><td class="fl"><img src="https://flagcdn.com/w40/rs.png" alt="" loading="lazy"></td><td class="l pl">Marko Guduric</td><td class="l tm">AX Armani Exchange Milan</td><td class="rat">14.23</td><td>1</td><td>17.0</td><td>3.0</td><td>5.0</td></tr>
+<tr><td class="rk">5</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Talen Horton-Tucker</td><td class="l tm">Fenerbahce Beko</td><td class="rat">14.20</td><td>1</td><td>13.0</td><td>3.0</td><td>1.0</td></tr>
+<tr><td class="rk">6</td><td class="fl"><img src="https://flagcdn.com/w40/fr.png" alt="" loading="lazy"></td><td class="l pl">Jaylen Hoard</td><td class="l tm">Maccabi FOX Tel Aviv</td><td class="rat">13.64</td><td>1</td><td>15.0</td><td>6.0</td><td>0.0</td></tr>
+<tr><td class="rk">7</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Sterling Brown</td><td class="l tm">Zalgiris</td><td class="rat">13.49</td><td>1</td><td>10.0</td><td>2.0</td><td>0.0</td></tr>
+<tr><td class="rk">8</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">David Lighty</td><td class="l tm">ASVEL Basket</td><td class="rat">13.26</td><td>1</td><td>10.0</td><td>0.0</td><td>1.0</td></tr>
+<tr><td class="rk">9</td><td class="fl"><img src="https://flagcdn.com/w40/lt.png" alt="" loading="lazy"></td><td class="l pl">Tadas Sedekerskis</td><td class="l tm">Baskonia</td><td class="rat">11.62</td><td>1</td><td>15.0</td><td>2.0</td><td>0.0</td></tr>
+<tr><td class="rk">10</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Will Clyburn</td><td class="l tm">Fenerbahce Beko</td><td class="rat">11.10</td><td>1</td><td>8.0</td><td>3.0</td><td>1.0</td></tr>
+<tr><td class="rk">11</td><td class="fl"><img src="https://flagcdn.com/w40/gn.png" alt="" loading="lazy"></td><td class="l pl">Mamadi Diakite</td><td class="l tm">Dubai</td><td class="rat">9.78</td><td>1</td><td>6.0</td><td>2.0</td><td>1.0</td></tr>
+<tr><td class="rk">12</td><td class="fl"><img src="https://flagcdn.com/w40/ca.png" alt="" loading="lazy"></td><td class="l pl">Eugene Omoruyi</td><td class="l tm">Besiktas Icrypex</td><td class="rat">9.18</td><td>1</td><td>17.0</td><td>4.0</td><td>3.0</td></tr>
+<tr><td class="rk">13</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">MarJon Beauchamp</td><td class="l tm">Bayern Munich</td><td class="rat">8.11</td><td>1</td><td>8.0</td><td>3.0</td><td>2.0</td></tr>
+<tr><td class="rk">14</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Collin Malcolm</td><td class="l tm">Anadolu Efes</td><td class="rat">7.28</td><td>1</td><td>5.0</td><td>2.0</td><td>2.0</td></tr>
+<tr><td class="rk">15</td><td class="fl"><img src="https://flagcdn.com/w40/fr.png" alt="" loading="lazy"></td><td class="l pl">Timothe Luwawu</td><td class="l tm">Real Madrid</td><td class="rat">7.14</td><td>1</td><td>11.0</td><td>0.0</td><td>0.0</td></tr></tbody></table></section>
+<section id="pf"><h3>Power Forwards</h3><table><colgroup><col class="c-rk"><col class="c-fl"><col class="c-pl"><col class="c-tm"><col class="c-rat"><col class="c-gp"><col class="c-num"><col class="c-num"><col class="c-num"></colgroup><thead><tr>
+<th></th><th></th>
+<th class="l" data-s="t">Player</th><th class="l" data-s="t"></th>
+<th data-s="n">Rat</th><th data-s="n">GP</th><th data-s="n">Pts</th>
+<th data-s="n">Reb</th><th data-s="n">Ast</th>
+</tr></thead><tbody><tr><td class="rk">1</td><td class="fl"><img src="https://flagcdn.com/w40/bg.png" alt="" loading="lazy"></td><td class="l pl">Sasha Vezenkov</td><td class="l tm">Olympiacos</td><td class="rat">30.20</td><td>1</td><td>22.0</td><td>5.0</td><td>1.0</td></tr>
+<tr><td class="rk">2</td><td class="fl"><img src="https://flagcdn.com/w40/lt.png" alt="" loading="lazy"></td><td class="l pl">Azuolas Tubelis</td><td class="l tm">Zalgiris</td><td class="rat">18.61</td><td>1</td><td>10.0</td><td>12.0</td><td>4.0</td></tr>
+<tr><td class="rk">3</td><td class="fl"><img src="https://flagcdn.com/w40/es.png" alt="" loading="lazy"></td><td class="l pl">Nikola Mirotic</td><td class="l tm">Valencia Basket</td><td class="rat">17.93</td><td>1</td><td>13.0</td><td>3.0</td><td>0.0</td></tr>
+<tr><td class="rk">4</td><td class="fl"><img src="https://flagcdn.com/w40/fr.png" alt="" loading="lazy"></td><td class="l pl">Guerschon Yabusele</td><td class="l tm">Panathinaikos</td><td class="rat">16.80</td><td>1</td><td>13.0</td><td>5.0</td><td>0.0</td></tr>
+<tr><td class="rk">5</td><td class="fl"><img src="https://flagcdn.com/w40/hr.png" alt="" loading="lazy"></td><td class="l pl">Dario Saric</td><td class="l tm">Anadolu Efes</td><td class="rat">16.53</td><td>1</td><td>17.0</td><td>5.0</td><td>2.0</td></tr>
+<tr><td class="rk">6</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Tyrique Jones</td><td class="l tm">Olympiacos</td><td class="rat">15.71</td><td>1</td><td>12.0</td><td>8.0</td><td>0.0</td></tr>
+<tr><td class="rk">7</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Alec Peters</td><td class="l tm">AX Armani Exchange Milan</td><td class="rat">15.69</td><td>1</td><td>17.0</td><td>2.0</td><td>1.0</td></tr>
+<tr><td class="rk">8</td><td class="fl"><img src="https://flagcdn.com/w40/gr.png" alt="" loading="lazy"></td><td class="l pl">Lefteris Mantzoukas</td><td class="l tm">Panathinaikos</td><td class="rat">13.76</td><td>1</td><td>10.0</td><td>4.0</td><td>1.0</td></tr>
+<tr><td class="rk">9</td><td class="fl"><img src="https://flagcdn.com/w40/es.png" alt="" loading="lazy"></td><td class="l pl">Juancho Hernangomez</td><td class="l tm">Panathinaikos</td><td class="rat">13.76</td><td>1</td><td>5.0</td><td>6.0</td><td>1.0</td></tr>
+<tr><td class="rk">10</td><td class="fl"><img src="https://flagcdn.com/w40/rs.png" alt="" loading="lazy"></td><td class="l pl">Nikola Tanaskovic</td><td class="l tm">KK Partizan</td><td class="rat">13.31</td><td>1</td><td>7.0</td><td>6.0</td><td>0.0</td></tr>
+<tr><td class="rk">11</td><td class="fl"><img src="https://flagcdn.com/w40/fr.png" alt="" loading="lazy"></td><td class="l pl">Theo Maledon</td><td class="l tm">Real Madrid</td><td class="rat">12.84</td><td>1</td><td>11.0</td><td>4.0</td><td>6.0</td></tr>
+<tr><td class="rk">12</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Jacob Toppin</td><td class="l tm">Hapoel Tel Aviv</td><td class="rat">12.77</td><td>1</td><td>11.0</td><td>3.0</td><td>0.0</td></tr>
+<tr><td class="rk">13</td><td class="fl"><img src="https://flagcdn.com/w40/il.png" alt="" loading="lazy"></td><td class="l pl">Roman Sorkin</td><td class="l tm">Maccabi FOX Tel Aviv</td><td class="rat">12.12</td><td>1</td><td>13.0</td><td>5.0</td><td>2.0</td></tr>
+<tr><td class="rk">14</td><td class="fl"><img src="https://flagcdn.com/w40/ca.png" alt="" loading="lazy"></td><td class="l pl">Conor Morgan</td><td class="l tm">Besiktas Icrypex</td><td class="rat">10.78</td><td>1</td><td>15.0</td><td>2.0</td><td>1.0</td></tr>
+<tr><td class="rk">15</td><td class="fl"><img src="https://flagcdn.com/w40/ca.png" alt="" loading="lazy"></td><td class="l pl">Mfiondu Kabengele</td><td class="l tm">Dubai</td><td class="rat">10.63</td><td>1</td><td>9.0</td><td>7.0</td><td>3.0</td></tr></tbody></table></section>
+<section id="c"><h3>Centers</h3><table><colgroup><col class="c-rk"><col class="c-fl"><col class="c-pl"><col class="c-tm"><col class="c-rat"><col class="c-gp"><col class="c-num"><col class="c-num"><col class="c-num"></colgroup><thead><tr>
+<th></th><th></th>
+<th class="l" data-s="t">Player</th><th class="l" data-s="t"></th>
+<th data-s="n">Rat</th><th data-s="n">GP</th><th data-s="n">Pts</th>
+<th data-s="n">Reb</th><th data-s="n">Ast</th>
+</tr></thead><tbody><tr><td class="rk">1</td><td class="fl"><img src="https://flagcdn.com/w40/fr.png" alt="" loading="lazy"></td><td class="l pl">Mathias Lessort</td><td class="l tm">Panathinaikos</td><td class="rat">24.32</td><td>1</td><td>15.0</td><td>9.0</td><td>2.0</td></tr>
+<tr><td class="rk">2</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Daniel Oturu</td><td class="l tm">Hapoel Tel Aviv</td><td class="rat">23.47</td><td>1</td><td>20.0</td><td>12.0</td><td>3.0</td></tr>
+<tr><td class="rk">3</td><td class="fl"><img src="https://flagcdn.com/w40/lt.png" alt="" loading="lazy"></td><td class="l pl">Jonas Valanciunas</td><td class="l tm">Zalgiris</td><td class="rat">21.24</td><td>1</td><td>13.0</td><td>8.0</td><td>2.0</td></tr>
+<tr><td class="rk">4</td><td class="fl"><img src="https://flagcdn.com/w40/de.png" alt="" loading="lazy"></td><td class="l pl">Johannes Voigtmann</td><td class="l tm">Bayern Munich</td><td class="rat">20.12</td><td>1</td><td>10.0</td><td>5.0</td><td>3.0</td></tr>
+<tr><td class="rk">5</td><td class="fl"><img src="https://flagcdn.com/w40/de.png" alt="" loading="lazy"></td><td class="l pl">Johannes Thiemann</td><td class="l tm">Bayern Munich</td><td class="rat">19.15</td><td>1</td><td>15.0</td><td>7.0</td><td>1.0</td></tr>
+<tr><td class="rk">6</td><td class="fl"><img src="https://flagcdn.com/w40/gr.png" alt="" loading="lazy"></td><td class="l pl">Kostas Mitoglou</td><td class="l tm">Panathinaikos</td><td class="rat">16.96</td><td>1</td><td>11.0</td><td>6.0</td><td>0.0</td></tr>
+<tr><td class="rk">7</td><td class="fl"><img src="https://flagcdn.com/w40/cf.png" alt="" loading="lazy"></td><td class="l pl">Kevarrius Hayes</td><td class="l tm">KK Partizan</td><td class="rat">16.46</td><td>1</td><td>10.0</td><td>3.0</td><td>1.0</td></tr>
+<tr><td class="rk">8</td><td class="fl"><img src="https://flagcdn.com/w40/pl.png" alt="" loading="lazy"></td><td class="l pl">Olek Balcerowski</td><td class="l tm">Barca</td><td class="rat">15.97</td><td>1</td><td>10.0</td><td>4.0</td><td>2.0</td></tr>
+<tr><td class="rk">9</td><td class="fl"><img src="https://flagcdn.com/w40/ng.png" alt="" loading="lazy"></td><td class="l pl">Tonye Jekiri</td><td class="l tm">KK Partizan</td><td class="rat">15.59</td><td>1</td><td>7.0</td><td>1.0</td><td>3.0</td></tr>
+<tr><td class="rk">10</td><td class="fl"><img src="https://flagcdn.com/w40/fr.png" alt="" loading="lazy"></td><td class="l pl">Neal Sako</td><td class="l tm">Valencia Basket</td><td class="rat">14.34</td><td>1</td><td>10.0</td><td>2.0</td><td>2.0</td></tr>
+<tr><td class="rk">11</td><td class="fl"><img src="https://flagcdn.com/w40/cu.png" alt="" loading="lazy"></td><td class="l pl">Jasiel Rivero</td><td class="l tm">Valencia Basket</td><td class="rat">11.85</td><td>1</td><td>10.0</td><td>3.0</td><td>0.0</td></tr>
+<tr><td class="rk">12</td><td class="fl"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"></td><td class="l pl">Damian Jones</td><td class="l tm">Real Madrid</td><td class="rat">10.32</td><td>1</td><td>10.0</td><td>5.0</td><td>0.0</td></tr>
+<tr><td class="rk">13</td><td class="fl"><img src="https://flagcdn.com/w40/cf.png" alt="" loading="lazy"></td><td class="l pl">Allan Dokosi</td><td class="l tm">Paris Basketball</td><td class="rat">8.50</td><td>1</td><td>4.0</td><td>5.0</td><td>4.0</td></tr>
+<tr><td class="rk">14</td><td class="fl"><img src="https://flagcdn.com/w40/hr.png" alt="" loading="lazy"></td><td class="l pl">Ante Zizic</td><td class="l tm">Besiktas Icrypex</td><td class="rat">7.98</td><td>1</td><td>4.0</td><td>7.0</td><td>0.0</td></tr>
+<tr><td class="rk">15</td><td class="fl"><img src="https://flagcdn.com/w40/ng.png" alt="" loading="lazy"></td><td class="l pl">Ebuka Izundu</td><td class="l tm">KK Crvena Zvezda</td><td class="rat">7.34</td><td>1</td><td>7.0</td><td>4.0</td><td>0.0</td></tr></tbody></table></section>
+</div>
+<script>
+(function(){
+  // SORTING AND THE TOGGLE, PER TABLE, so one section's state does not follow the
+  // reader into another.
+  [].slice.call(document.querySelectorAll("table")).forEach(function(tbl){
+    var tb = tbl.querySelector("tbody");
+    if(!tb) return;
+    var all = [].slice.call(tb.querySelectorAll("tr"));
+    var key = -1, desc = true;
+
+    var ths = [].slice.call(tbl.querySelectorAll("thead th"));
+    ths.forEach(function(th, i){
+      if(!th.getAttribute("data-s")) return;
+      th.addEventListener("click", function(){
+        // The same column again reverses; a new one starts descending, which is
+        // what a reader wants from a rating and from every per-game figure here.
+        if(key === i) desc = !desc; else { key = i; desc = true; }
+        var numeric = th.getAttribute("data-s") === "n";
+        all.sort(function(a, b){
+          var x = a.cells[i].textContent.trim(), y = b.cells[i].textContent.trim();
+          if(numeric){
+            var nx = parseFloat(x) || 0, ny = parseFloat(y) || 0;
+            return desc ? ny - nx : nx - ny;
+          }
+          return desc ? y.localeCompare(x) : x.localeCompare(y);
+        });
+        ths.forEach(function(o){ o.removeAttribute("aria-sort"); });
+        th.setAttribute("aria-sort", desc ? "descending" : "ascending");
+        draw();
+      });
+    });
+
+    function draw(){
+      var show = all;
+      tb.innerHTML = "";
+      var keep = tbl.getAttribute("data-rank") === "keep";
+      show.forEach(function(r, n){
+        // Renumbered so a sorted list reads 1..N -- EXCEPT where the number is a
+        // league position rather than a row count, which a team table carries and
+        // must not lose the moment someone sorts it.
+        if(!keep) r.cells[0].textContent = n + 1;
+        r.className = "";
+        tb.appendChild(r);
+      });
+    }
+  });
+})();
+</script>
+</body></html>
